@@ -98,6 +98,7 @@
 
 .popup-converter{
   position: absolute;
+  z-index: 2;
   inset: 75px auto auto 0;
   width: 95%;
   box-shadow: 0 4px 24px rgba(0,0,0,.25);
