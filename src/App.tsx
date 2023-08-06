@@ -14,15 +14,15 @@ function App() {
 
   const valuations: IValutions[] = [
     {
-      title: 'EUR',
+      title: 'BTC',
       img: btc
     },
     {
-      title: 'USD',
+      title: 'USDT',
       img: usdt
     },
     {
-      title: 'RUB',
+      title: 'ETH',
       img: eth
     },
   ]
@@ -144,7 +144,7 @@ function App() {
           {
             new Date(convert.lastUpdated).toLocaleDateString() + ' ' +
             new Date(convert.lastUpdated).getHours() + ':' +
-            new Date(convert.lastUpdated).getMinutes()
+            new Date(convert.lastUpdated).getMinutes().toString().padStart(2,'0')
           }
         </b>
       </footer>      
