@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/crypto-converter/static/css/main.efe49ec1.css",
+    "main.css": "/crypto-converter/static/css/main.256d4d36.css",
     "main.js": "/crypto-converter/static/js/main.aadf153a.js",
     "static/js/787.77b3db31.chunk.js": "/crypto-converter/static/js/787.77b3db31.chunk.js",
     "static/media/arrow-right-left.svg": "/crypto-converter/static/media/arrow-right-left.d4d4be43cf7428772e35808e7cbddc16.svg",
@@ -8,12 +8,12 @@
     "static/media/usdt.svg": "/crypto-converter/static/media/usdt.187a2b3e7ed3ef2b1c671d813ffbce2d.svg",
     "index.html": "/crypto-converter/index.html",
     "static/media/eth.svg": "/crypto-converter/static/media/eth.54332ef9312824be37d5e4d529c39a55.svg",
-    "main.efe49ec1.css.map": "/crypto-converter/static/css/main.efe49ec1.css.map",
+    "main.256d4d36.css.map": "/crypto-converter/static/css/main.256d4d36.css.map",
     "main.aadf153a.js.map": "/crypto-converter/static/js/main.aadf153a.js.map",
     "787.77b3db31.chunk.js.map": "/crypto-converter/static/js/787.77b3db31.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.efe49ec1.css",
+    "static/css/main.256d4d36.css",
     "static/js/main.aadf153a.js"
   ]
 }
