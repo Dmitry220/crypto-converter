@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './App.scss';
 import btc from '../src/assets/images/btc.svg'
 import usdt from '../src/assets/images/usdt.svg'
@@ -30,8 +30,8 @@ function App() {
 
     const ref = useRef<HTMLDivElement>(null);
 
-    const [firstValue, setFirstValue] = useState<number>(1)
-    const [secondValue, setSecondValue] = useState<number>(1)
+    const [firstValue, setFirstValue] = useState<string>('1')
+    const [secondValue, setSecondValue] = useState<string>('1')
     const [firstValuation, setFirstValuation] = useState<IValutions>(valuations[0])
     const [secondValuation, setSecondValuation] = useState<IValutions>(valuations[1])
     const [showFirstValuation, setShowFirstValuation] = useState<boolean>()
@@ -39,20 +39,38 @@ function App() {
     const [isSwap, setSwap] = useState(true)
 
 
-    const handlerInputOne = (e: ChangeEvent<HTMLInputElement>) => {
-        if (+e.target.value === 0) {
-            return
+    const regexInput = (e: ChangeEvent<HTMLInputElement>) => {
+
+        let [_, sign, integer, decimals]: any = e.target.value.replace(/[^\d\.\-]/g, "")
+            .replace(/(\..*?)\./g, "$1")
+            .replace(/(.+)-/g, "$1")
+            .match(/^(-?)(.*?)((?:\.\d*)?)$/);
+
+        let pos: number = Number(e.target.selectionStart) - 1;
+        if (!integer && decimals) pos += 2;
+
+        if (integer || decimals) {
+            integer = +integer;
         }
-        setFirstValue(+e.target.value.replace(/^0+(?!\.|$)/, ''))
-        getSecondValuation(+e.target.value.replace(/^0+(?!\.|$)/, ''))
+
+        const formatted = sign + integer + decimals;
+
+        if (formatted !== e.target.value) {
+            e.target.value = formatted;
+            e.target.setSelectionRange(pos, pos);
+        }
+    }
+
+    const handlerInputOne = (e: ChangeEvent<HTMLInputElement>) => {
+        regexInput(e)
+        setFirstValue(e.target.value)
+        getSecondValuation(+e.target.value || 0)
     }
 
     const handlerInputTwo = (e: ChangeEvent<HTMLInputElement>) => {
-        if (+e.target.value === 0) {
-            return
-        }
-        setSecondValue(+e.target.value.replace(/^0+(?!\.|$)/, ''))
-        getFirstValuation(+e.target.value.replace(/^0+(?!\.|$)/, ''))
+        regexInput(e)
+        setSecondValue(e.target.value)
+        getFirstValuation(+e.target.value || 0)
     }
 
     const openFirstListValuation = () => setShowFirstValuation(true)
@@ -61,12 +79,12 @@ function App() {
 
     const getSecondValuation = async (value: number) => {
         await convert.ready()
-        setSecondValue(convert[firstValuation.title][secondValuation.title](value))
+        setSecondValue(convert[firstValuation.title][secondValuation.title](value) || 0)
 
     }
     const getFirstValuation = async (value: number) => {
         await convert.ready()
-        setFirstValue(convert[secondValuation.title][firstValuation.title](value))
+        setFirstValue(convert[secondValuation.title][firstValuation.title](value) || 0)
     }
 
     const swap = () => {
@@ -81,7 +99,7 @@ function App() {
     });
 
     useEffect(() => {
-        getSecondValuation(firstValue)
+        getSecondValuation(+firstValue)
     }, [firstValuation])
 
     useEffect(() => {
@@ -89,27 +107,31 @@ function App() {
             setSwap(false)
             return
         }
-        getFirstValuation(secondValue)
+        getFirstValuation(+secondValue)
     }, [secondValuation])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            getSecondValuation(+firstValue)
+        }, 25000)
+        return () => clearInterval(interval)
+    }, [])
 
 
     return (
         <div className="converter">
-            <div className="converter__head">
-                Тестовое задание. React. Typescript
-            </div>
             <div className="converter__body">
                 <div className="converter__row converter__row_border">
-                    <input className='converter__input' min={0} type="number" value={firstValue}
+                    <input className='converter__input' type="text" value={firstValue}
                         onChange={handlerInputOne} />
                     <span className='converter__crypto-name' onClick={openFirstListValuation}>
-                        <div>
-                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="8" height="14"><path
-                                d="M4 0l4 6H0l4-6zm0 14l4-6H0l4 6z" /></svg>
-                        </div>
                         <div className={'converter__crypto-name-title'}>
                             <img src={firstValuation.img} alt="" />
                             {firstValuation.title}
+                        </div>
+                        <div>
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="8" height="14"><path
+                                d="M4 0l4 6H0l4-6zm0 14l4-6H0l4 6z" /></svg>
                         </div>
                     </span>
                     {showFirstValuation && <div className='converter__popup popup-converter' ref={ref}>
@@ -129,18 +151,17 @@ function App() {
                     <div className={'converter__arrow'} onClick={swap} />
                 </div>
                 <div className="converter__row converter__row_border">
-                    <input className='converter__input' min={0} type="number" maxLength={20} value={secondValue}
+                    <input className='converter__input' min={0} type="text" maxLength={20} value={secondValue}
                         onChange={handlerInputTwo} />
                     <span className='converter__crypto-name' onClick={openSecondListValuation}>
-                        <div>
-                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="8" height="14"><path
-                                d="M4 0l4 6H0l4-6zm0 14l4-6H0l4 6z" /></svg>
-                        </div>
                         <div className={'converter__crypto-name-title'}>
                             <img src={secondValuation.img} alt="" />
                             {secondValuation.title}
                         </div>
-
+                        <div>
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="8" height="14"><path
+                                d="M4 0l4 6H0l4-6zm0 14l4-6H0l4 6z" /></svg>
+                        </div>
                     </span>
                     {showSecondValuation && <div className='converter__popup popup-converter' ref={ref}>
                         {valuations.map((item, index) =>

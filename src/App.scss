@@ -1,14 +1,16 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 5px; /* <-- Apparently some margin are still there even though it's hidden */
+body{
+  background: #e5e5e5;
 }
+
+
 .converter{
 
-  max-width: 812px;
+  max-width: 610px;
   margin: 50px auto;
-  padding: 0 15px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+
 
   &__head{
     font-weight: 700;
@@ -71,7 +73,7 @@ input::-webkit-inner-spin-button {
       display: flex;
       align-items: center;
       flex-direction: column;
-      gap: 10px;
+      gap: 3px;
     }
 
     img{
@@ -102,7 +104,7 @@ input::-webkit-inner-spin-button {
     color: #000;
     position: relative;
     top: 0;
-    padding: 0;
+    padding: 0 10px 0 0;
     outline: none;
     @media (max-width:768px) {
       border-width: 0;
@@ -111,6 +113,5 @@ input::-webkit-inner-spin-button {
   }
   &__footer{   
     font-size: 18px;
-    text-align: center;
   }
 }
