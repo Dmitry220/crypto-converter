@@ -26,6 +26,7 @@
   }
 
   &__row{
+    border-radius: 10px;
     height: 100%;
     font-size: 24px;
     display: flex;
@@ -39,9 +40,10 @@
       font-size: inherit;
     }
     &_border{
-      border: 3px solid gray;
+
     }
   }
+
 
   &__crypto-name{
     height: 100%;
@@ -50,42 +52,51 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    font-size: 12px;
+    line-height: 15px;
     justify-content: center;
     padding: 0 15px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    border-left: 2px solid rgba(7, 28, 71, 0.12);
+    font-weight: 700;
+    border: 2px solid rgba(7, 28, 71, 0.12);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    &-title{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
 
     img{
-      width: 50px;
-    height: 20px;
+      width: 40px;
+      height: 20px;
     }
 
   }
 
   &__arrow{
-    width: 50px;
     height: 35px;
     object-fit: contain;
     cursor: pointer;
-    @media (max-width:768px) {
-      height: 50px;
-      width: 50px;
-    }
-    @media (max-width:576px) {
-      height: 25px;
-      width: 25px;
-    }
+    width: 20px;
+    background: #999;
+    -webkit-mask: url(//yastatic.net/s3/web4static/_/v2/static/media/Swap_16.c0236c02.svg) no-repeat center;
+    mask: url(//yastatic.net/s3/web4static/_/v2/static/media/Swap_16.c0236c02.svg) no-repeat center;
   }
 
   &__input{
+    border: 2px solid rgba(7, 28, 71, 0.12);
+    border-radius: 10px 0 0 10px;
     height: 100%;
     font-family: HelveticaNeue-Light,"Helvetica Neue Light",Helvetica,Arial,sans-serif;
     font-size: inherit;
     text-align: right;
+    width: 201px;
     color: #000;
-    border-width: 0 5px 0px 0px;
-    border-color: rgb(107 107 107);
+    position: relative;
+    top: 0;
+    padding: 0;
     @media (max-width:768px) {
       border-width: 0;
     }
@@ -93,35 +104,6 @@
   }
   &__footer{   
     font-size: 18px;
-  }
-}
-
-.popup-converter{
-  position: absolute;
-  z-index: 2;
-  inset: 75px auto auto 0;
-  width: 95%;
-  box-shadow: 0 4px 24px rgba(0,0,0,.25);
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 12px;
-  border-radius: 5px;
-  &__button{
-    background: transparent;
-    transition: 0.3s all ease;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    &_active{
-      background: green;
-      color: #fff;
-    }
-    &:hover{
-      background: green;
-      color: #fff;
-    }
+    text-align: center;
   }
 }
