@@ -1,5 +1,5 @@
 export interface IValutions {
-	title: string,
-	img: string,
-	alt?: string
+  title: string
+  img: string
+  alt?: string
 }

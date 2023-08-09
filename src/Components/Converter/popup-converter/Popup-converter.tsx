@@ -1,6 +1,6 @@
 import React, {FC, MouseEvent} from 'react'
-import {IListValuationsName} from '../../models/IListValutionsName'
-import checkIcon from "../../assets/images/check.svg"
+import {IListValuationsName} from '../../../models/IListValutionsName'
+import checkIcon from "../../../assets/images/check.svg"
 import './Popup-converter.scss'
 
 export const PopupConverter: FC<IListValuationsName> = (

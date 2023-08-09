@@ -1,10 +1,10 @@
 import {PopupConverter} from "../popup-converter/Popup-converter";
 import React, {ChangeEvent, Dispatch, FC, useRef, useState} from "react";
-import arrowDoubleVertical from '../../assets/images/arrow-double-vertical.svg'
-import {IValutions} from "../../models/IValutions";
-import {valuations} from "../../utils/Constants";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-import {regexInput} from "../../utils/helperFunctions";
+import arrowDoubleVertical from '../../../assets/images/arrow-double-vertical.svg'
+import {IValutions} from "../../../models/IValutions";
+import {valuations} from "../../../utils/Constants";
+import useOnClickOutside from "../../../hooks/useOnClickOutside";
+import {regexInput} from "../../../utils/helperFunctions";
 
 interface IConverterInput {
     index: 1| 2,
